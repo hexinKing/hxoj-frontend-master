@@ -1,4 +1,17 @@
-# shieroj-frontend
+## 项目介绍
+基于Vue3、Arco Design组件库等技术栈实现HXOJ在线判题系统前端设计，
+能够根据管理员设定的题目测试用例在自主实现的代码沙箱中对代码进行编译、运行、判断输出是否正确。
+其中，代码沙箱可以作为独立服务，提供给其他开发者使用。
+
+### 技术选型
+- Web 网页开发
+- Vue 3
+- Vue-CLI 脚手架
+- Axios 请求库
+- Arco Design 组件库
+- 前端工程化：ESLint + Prettier + TypeScript
+- 富文本编辑器
+- ⭐️ OpenAPI 前端代码生成
 
 ## 项目安装和部署
 ### 1、安装项目依赖
