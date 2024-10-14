@@ -6,9 +6,9 @@
   ></div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import * as monaco from "monaco-editor";
-import { onMounted, ref, toRaw, watch, withDefaults, defineProps } from "vue";
+import { defineProps, onMounted, ref, toRaw, watch, withDefaults } from "vue";
 
 const codeEditorRef = ref();
 const codeEditor = ref();

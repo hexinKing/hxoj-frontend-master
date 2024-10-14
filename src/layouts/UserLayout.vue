@@ -3,7 +3,7 @@
     <a-layout style="min-height: 100vh">
       <a-layout-header class="header">
         <a-space>
-          <img src="../assets/logo.png" class="logo" />
+          <img class="logo" src="../assets/logo.png" />
           <div style="margin-left: 15px; font-size: 25px; font-weight: bold">
             HX OJ 在线判题系统
           </div>

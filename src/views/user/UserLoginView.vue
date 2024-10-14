@@ -2,24 +2,24 @@
   <div id="userLoginView">
     <h1 style="margin: 32px 0">登录 HX OJ 判题系统</h1>
     <a-form
-      style="max-width: 320px; margin: 0 auto"
-      label-align="left"
-      auto-label-width
       :model="form"
+      auto-label-width
+      label-align="left"
+      style="max-width: 320px; margin: 0 auto"
     >
       <a-form-item
-        required
         field="userAccount"
         label="账号"
+        required
         tooltip="账号不少于 4 位"
       >
         <a-input v-model="form.userAccount" placeholder="请输入账号" />
       </a-form-item>
       <a-form-item
-        required
         field="userPassword"
-        tooltip="密码不少于 8 位"
         label="密码"
+        required
+        tooltip="密码不少于 8 位"
       >
         <a-input-password
           v-model="form.userPassword"
@@ -29,29 +29,29 @@
     </a-form>
     <a-space wrap>
       <a-button
-        size="large"
         shape="round"
-        type="secondary"
+        size="large"
         status="success"
+        type="secondary"
         @click="toIndex"
       >
         首 页
       </a-button>
       <a-button
-        style="width: 120px; margin: 16px"
-        size="large"
-        shape="round"
-        type="primary"
         html-type="submit"
+        shape="round"
+        size="large"
+        style="width: 120px; margin: 16px"
+        type="primary"
         @click="handleSubmit"
       >
         登 录
       </a-button>
       <a-button
-        size="large"
         shape="round"
-        type="outline"
+        size="large"
         status="success"
+        type="outline"
         @click="toRegister"
       >
         注 册
@@ -60,7 +60,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { reactive } from "vue";
 import { UserControllerService, UserLoginRequest } from "../../../backapi";
 import message from "@arco-design/web-vue/es/message";

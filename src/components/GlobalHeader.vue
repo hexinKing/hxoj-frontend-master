@@ -1,10 +1,10 @@
 <template>
-  <a-row id="globalHeader" align="center" :wrap="false">
+  <a-row id="globalHeader" :wrap="false" align="center">
     <a-col flex="auto">
       <div>
         <a-menu
-          mode="horizontal"
           :selected-keys="selectedKeys"
+          mode="horizontal"
           @menu-item-click="doMenuClick"
         >
           <a-menu-item
@@ -29,7 +29,7 @@
           v-if="loginUser && loginUser.userRole !== AccessEnum.NOT_LOGIN"
         >
           <template v-if="loginUser.userAvatar">
-            <a-avatar shape="circle" :image-url="loginUser.userAvatar">
+            <a-avatar :image-url="loginUser.userAvatar" shape="circle">
             </a-avatar>
           </template>
           <template v-else>
@@ -39,7 +39,7 @@
           </template>
         </template>
         <template v-else>
-          <a-avatar shape="circle" :style="{ backgroundColor: '#3370ff' }">
+          <a-avatar :style="{ backgroundColor: '#3370ff' }" shape="circle">
             <IconUser />
           </a-avatar>
         </template>
@@ -86,7 +86,7 @@
   </a-row>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { routes } from "../router/routes";
 import { useRouter } from "vue-router";
 import { computed, ref } from "vue";

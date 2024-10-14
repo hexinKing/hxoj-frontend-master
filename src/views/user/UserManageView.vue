@@ -24,19 +24,19 @@
         <a-input v-model="searchParams.email" placeholder="请输入搜索邮箱" />
       </a-form-item>
       <a-form-item>
-        <a-button type="outline" shape="round" status="normal" @click="doSubmit"
+        <a-button shape="round" status="normal" type="outline" @click="doSubmit"
           >搜 索
         </a-button>
       </a-form-item>
       <a-form-item>
-        <a-button type="outline" shape="round" status="normal" @click="loadData"
+        <a-button shape="round" status="normal" type="outline" @click="loadData"
           >刷 新
         </a-button>
       </a-form-item>
     </a-form>
     <a-table
-      :column-resizable="true"
       :ref="tableRef"
+      :column-resizable="true"
       :columns="columns"
       :data="dataList"
       :pagination="{
@@ -47,12 +47,12 @@
         showJumper: true,
         showPageSize: true,
       }"
-      @page-change="onPageChange"
       @pageSizeChange="onPageSizeChange"
+      @page-change="onPageChange"
     >
       <template #userAvatar="{ record }">
         <a-avatar :size="70" shape="circle">
-          <img alt="userAvatar" :src="record.userAvatar" />
+          <img :src="record.userAvatar" alt="userAvatar" />
         </a-avatar>
       </template>
       <template #userRole="{ record }">
@@ -82,10 +82,10 @@
             >修改
           </a-button>
           <a-popconfirm
-            content="确定要删除此题目吗?"
-            type="error"
-            okText="是"
             cancelText="否"
+            content="确定要删除此题目吗?"
+            okText="是"
+            type="error"
             @cancel="
               () => {
                 console.log(`已取消`);
@@ -93,7 +93,7 @@
             "
             @ok="doDelete(record)"
           >
-            <a-button shape="round" type="outline" status="danger"
+            <a-button shape="round" status="danger" type="outline"
               >删除
             </a-button>
           </a-popconfirm>
@@ -101,32 +101,32 @@
       </template>
     </a-table>
     <a-modal
-      width="30%"
       :visible="visible"
       placement="right"
-      @ok="handleOk"
-      @cancel="closeModel"
       unmountOnClose
+      width="30%"
+      @cancel="closeModel"
+      @ok="handleOk"
     >
       <div style="text-align: center">
         <a-upload
-          action="/"
+          :custom-request="uploadAvatar"
           :fileList="file ? [file] : []"
           :show-file-list="false"
+          action="/"
           @change="onChange"
-          :custom-request="uploadAvatar"
         >
           <template #upload-button>
             <a-avatar :size="70" shape="circle">
-              <img alt="头像" :src="userInfo?.userAvatar" />
+              <img :src="userInfo?.userAvatar" alt="头像" />
             </a-avatar>
           </template>
         </a-upload>
       </div>
       <a-form
         label-align="right"
-        title="个人信息"
         style="max-width: 480px; margin: 0 auto"
+        title="个人信息"
       >
         <a-form-item field="名称" label="名称 :">
           <a-input v-model="userInfo.userName" placeholder="请输入用户名称" />
@@ -164,7 +164,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, ref, watchEffect } from "vue";
 import {
   FileControllerService,
@@ -355,9 +355,7 @@ let userAvatarImg = userInfo.value?.userAvatar;
  * 上传头像
  */
 const uploadAvatar = async () => {
-  const res = await FileControllerService.uploadOssFileUsingPost(
-    file?.value.file
-  );
+  const res = await FileControllerService.uploadFileUsingPost(file?.value.file);
   if (res.code === 0) {
     userAvatarImg = res.data;
     Message.success("上传成功，点击确认即可修改头像");

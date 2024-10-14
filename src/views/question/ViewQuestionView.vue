@@ -6,8 +6,8 @@
           <a-tab-pane key="question" title="题目">
             <a-card v-if="question" :title="question.title">
               <a-descriptions
-                title="判题条件:"
                 :column="{ xs: 1, md: 2, lg: 3 }"
+                title="判题条件:"
               >
                 <a-descriptions-item label="时间限制（ms）：">
                   {{ question.judgeConfig.timeLimit ?? 0 }}
@@ -32,7 +32,7 @@
               </template>
             </a-card>
           </a-tab-pane>
-          <a-tab-pane key="comment" title="评论" disabled> 评论区</a-tab-pane>
+          <a-tab-pane key="comment" disabled title="评论"> 评论区</a-tab-pane>
           <a-tab-pane key="answer" title="答案"> 提交后方可查看答案</a-tab-pane>
         </a-tabs>
       </a-col>
@@ -50,16 +50,16 @@
           </a-form-item>
         </a-form>
         <CodeEditor
+          :handle-change="changeCode"
           :language="form.submitLanguage"
           :value="form.submitCode"
-          :handle-change="changeCode"
         />
         <a-divider size="0" />
         <a-button
           shape="round"
-          type="primary"
-          style="min-width: 200px; margin-left: 280px"
           size="large"
+          style="min-width: 200px; margin-left: 280px"
+          type="primary"
           @click="doSubmit"
         >
           提交代码
@@ -69,8 +69,8 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { onMounted, ref, withDefaults, defineProps } from "vue";
+<script lang="ts" setup>
+import { defineProps, onMounted, ref, withDefaults } from "vue";
 import {
   QuestionControllerService,
   QuestionSubmitAddRequest,

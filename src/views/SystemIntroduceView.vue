@@ -1,14 +1,13 @@
 <template>
   <div id="introduceView">
     <a-typography :style="{ marginTop: '-40px' }">
-      <a-typography-title> Cat OJ 判题系统</a-typography-title>
+      <a-typography-title> HX OJ 判题系统</a-typography-title>
       <a-typography-paragraph>
         用户可以选择题目，在线做题，编写代码并且提交代码；系统会对用户提交的代码，根据我们出题人设置的答案，来判断用户的提交结果是否正确。
       </a-typography-paragraph>
       <a-typography-title :heading="2">1、项目难点</a-typography-title>
       <a-typography-paragraph>
         用于在线评测编程题目代码的系统，能够根据用户提交的代码、出题人预先设置的题目输入和输出用例，进行编译代码、运行代码、判断代码运行结果是否正确。
-        <a-typography-text mark>判题系统</a-typography-text>
       </a-typography-paragraph>
       <a-typography-title :heading="2">2、项目背景</a-typography-title>
       <a-typography-paragraph>

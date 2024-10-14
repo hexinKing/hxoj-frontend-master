@@ -2,12 +2,12 @@
   <div id="404page">
     <div class="title">404 错误 !</div>
     <div class="images">
-      <img width="500" src="../../assets/404.svg" />
+      <img src="../../assets/404.svg" width="500" />
     </div>
     <a-result :status="null" title="您没有访问的资源不存在！您可以返回主页面">
       <template #extra>
         <a-space>
-          <a-button class="back-404" type="primary" href="/">首页</a-button>
+          <a-button class="back-404" href="/" type="primary">首页</a-button>
         </a-space>
       </template>
     </a-result>

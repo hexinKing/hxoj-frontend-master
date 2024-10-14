@@ -2,38 +2,38 @@
   <div id="userInfoView">
     <a-descriptions-item>
       <a-avatar :size="100" shape="circle">
-        <img alt="头像" :src="loginUser.userAvatar" />
+        <img :src="loginUser.userAvatar" alt="头像" />
       </a-avatar>
     </a-descriptions-item>
     <a-card title="我的信息">
-      <a-descriptions :data="data" size="large" column="1" bordered />
+      <a-descriptions :data="data" bordered column="1" size="large" />
       <template #extra>
         <a-badge status="success" text="在线" />
       </template>
     </a-card>
     <a-modal
-      width="30%"
       :visible="visible"
       placement="right"
-      @ok="handleOk"
-      @cancel="closeModel"
       unmountOnClose
+      width="30%"
+      @cancel="closeModel"
+      @ok="handleOk"
     >
       <div style="text-align: center">
         <a-upload
-          action="/"
+          :custom-request="uploadAvatar"
           :fileList="file ? [file] : []"
           :show-file-list="false"
+          action="/"
           @change="onChange"
-          :custom-request="uploadAvatar"
         >
           <template #upload-button>
             <div
-              class="arco-upload-list-picture custom-upload-avatar"
               v-if="updateForm.userAvatar"
+              class="arco-upload-list-picture custom-upload-avatar"
             >
               <a-avatar :size="70" shape="circle">
-                <img alt="头像" :src="userAvatarImg" />
+                <img :src="userAvatarImg" alt="头像" />
               </a-avatar>
               <div class="arco-upload-list-picture-mask">
                 <IconEdit />
@@ -45,8 +45,8 @@
       <a-form
         :model="loginUser"
         label-align="right"
-        title="个人信息"
         style="max-width: 480px; margin: 0 auto"
+        title="个人信息"
       >
         <a-form-item field="用户名称" label="账号 :">
           <a-input v-model="updateForm.userName" placeholder="请输入用户名称" />
@@ -68,26 +68,26 @@
     <div>
       <a-button
         shape="round"
-        status="success"
         size="small"
-        type="outline"
+        status="success"
         style="margin: 10px"
+        type="outline"
       >
         <a-link @click="toIndex">首页</a-link>
       </a-button>
       <a-button
         shape="round"
-        status="normal"
         size="medium"
-        type="outline"
+        status="normal"
         style="margin: 10px"
+        type="outline"
         @click="openModalForm"
         >修改用户信息
       </a-button>
     </div>
   </div>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import { useStore } from "vuex";
 import {
   FileControllerService,
@@ -159,9 +159,7 @@ let userAvatarImg = updateForm.value.userAvatar;
  * 上传头像
  */
 const uploadAvatar = async () => {
-  const res = await FileControllerService.uploadOssFileUsingPost(
-    file?.value.file
-  );
+  const res = await FileControllerService.uploadFileUsingPost(file?.value.file);
   if (res.code === 0) {
     userAvatarImg = res.data;
     Message.success("上传成功，点击确认即可修改头像");

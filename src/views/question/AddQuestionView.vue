@@ -15,16 +15,16 @@
     </div>
     <a-form
       :model="form"
-      size="medium"
       label-align="left"
+      size="medium"
       style="font-weight: bold; margin: 0 auto"
     >
       <a-form-item
+        :rules="[{ required: true, message: '题目是必填的' }]"
         field="title"
         label="题目："
-        tooltip="建议填写题目"
         required
-        :rules="[{ required: true, message: '题目是必填的' }]"
+        tooltip="建议填写题目"
       >
         <a-input
           v-model="form.title"
@@ -50,7 +50,7 @@
         required
         tooltip="建议填写题目内容"
       >
-        <MdEditor :value="form.content" :handle-change="onContentChange" />
+        <MdEditor :handle-change="onContentChange" :value="form.content" />
       </a-form-item>
       <a-form-item
         field="answer"
@@ -58,13 +58,13 @@
         required
         tooltip="建议填写题目答案"
       >
-        <MdEditor :value="form.answer" :handle-change="onAnswerChange" />
+        <MdEditor :handle-change="onAnswerChange" :value="form.answer" />
       </a-form-item>
       <a-divider :margin="10" />
       <a-form-item
-        label="判题配置："
         :content-flex="false"
         :merge-props="false"
+        label="判题配置："
         required
         tooltip="建议填写判题配置"
       >
@@ -76,9 +76,9 @@
           >
             <a-input-number
               v-model="form.judgeConfig.timeLimit"
-              placeholder="请输入时间限制"
-              mode="button"
               min="0"
+              mode="button"
+              placeholder="请输入时间限制"
               size="large"
             />
           </a-form-item>
@@ -89,9 +89,9 @@
           >
             <a-input-number
               v-model="form.judgeConfig.memoryLimit"
-              placeholder="请输入内存限制"
-              mode="button"
               min="0"
+              mode="button"
+              placeholder="请输入内存限制"
               size="large"
             />
           </a-form-item>
@@ -102,9 +102,9 @@
           >
             <a-input-number
               v-model="form.judgeConfig.stackLimit"
-              placeholder="请输入堆栈限制"
-              mode="button"
               min="0"
+              mode="button"
+              placeholder="请输入堆栈限制"
               size="large"
             />
           </a-form-item>
@@ -112,9 +112,9 @@
       </a-form-item>
       <a-divider :margin="10" />
       <a-form-item
-        label="测试用例配置："
         :content-flex="false"
         :merge-props="false"
+        label="测试用例配置："
         required
         tooltip="建议填写测试用例配置"
       >
@@ -125,9 +125,9 @@
         >
           <a-space direction="vertical" style="min-width: 650px">
             <a-form-item
+              :key="index"
               :field="`form.judgeCase[${index}].input`"
               :label="`第${index}个输入用例:`"
-              :key="index"
               tooltip="主要的输入用例"
             >
               <a-input
@@ -136,9 +136,9 @@
               />
             </a-form-item>
             <a-form-item
+              :key="index"
               :field="`form.judgeCase[${index}].output`"
               :label="`第${index}个输出用例:`"
-              :key="index"
               tooltip="主要的输出用例"
             >
               <a-input
@@ -149,10 +149,10 @@
           </a-space>
           <a-space direction="vertical" size="large">
             <a-button
-              type="outline"
-              status="danger"
-              @click="handleDelete(index)"
               shape="round"
+              status="danger"
+              type="outline"
+              @click="handleDelete(index)"
             >
               删除用例
             </a-button>
@@ -160,10 +160,10 @@
         </a-form-item>
         <div style="margin-top: 5px">
           <a-button
-            @click="handleAdd"
-            type="outline"
-            status="success"
             shape="round"
+            status="success"
+            type="outline"
+            @click="handleAdd"
             >新增测试用例
           </a-button>
         </div>
@@ -171,9 +171,9 @@
       <a-divider :margin="10" />
       <a-form-item>
         <a-button
-          type="primary"
-          style="min-width: 150px; margin: 0 150px"
           shape="round"
+          style="min-width: 150px; margin: 0 150px"
+          type="primary"
           @click="doSubmit"
           >提交
         </a-button>
@@ -182,7 +182,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, ref } from "vue";
 import MdEditor from "@/components/MdEditor.vue";
 import { QuestionControllerService } from "../../../backapi/index";

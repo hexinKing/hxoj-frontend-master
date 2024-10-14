@@ -1,17 +1,17 @@
 <template>
   <Editor
-    :value="value"
+    :locale="locale"
     :mode="mode"
     :plugins="plugins"
-    :locale="locale"
+    :value="value"
     @change="handleChange"
   />
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import gfm from "@bytemd/plugin-gfm";
 import { Editor } from "@bytemd/vue-next";
-import { withDefaults, defineProps } from "vue";
+import { defineProps, withDefaults } from "vue";
 import locale from "bytemd/locales/zh_Hans.json";
 import gemoji from "@bytemd/plugin-gemoji";
 import math from "@bytemd/plugin-math";

@@ -24,15 +24,15 @@
         </a-select>
       </a-form-item>
       <a-form-item>
-        <a-button type="outline" shape="round" status="normal" @click="doSubmit"
+        <a-button shape="round" status="normal" type="outline" @click="doSubmit"
           >搜索
         </a-button>
       </a-form-item>
       <a-form-item>
         <a-button
-          type="primary"
           shape="round"
           status="success"
+          type="primary"
           @click="loadData"
           >刷新
         </a-button>
@@ -40,8 +40,6 @@
     </a-form>
     <a-divider size="0" />
     <a-table
-      column-resizable
-      wrapper
       :ref="tableRef"
       :columns="columns"
       :data="dataList"
@@ -53,16 +51,18 @@
         showJumper: true,
         showPageSize: true,
       }"
-      @page-change="onPageChange"
+      column-resizable
+      wrapper
       @pageSizeChange="onPageSizeChange"
+      @page-change="onPageChange"
     >
       <template #judgeInfo="{ record }">
         <a-space wrap>
           <a-tag
-            size="medium"
             v-for="(info, index) of record.judgeInfo"
             :key="index"
             :color="colors[index.length % colors.length]"
+            size="medium"
           >
             {{
               `${
@@ -99,10 +99,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, ref, watchEffect } from "vue";
 import {
-  QuestionSubmitControllerService,
+  QuestionControllerService,
   QuestionSubmitQueryRequest,
 } from "../../../backapi";
 import message from "@arco-design/web-vue/es/message";
@@ -123,12 +123,13 @@ const searchParams = ref<QuestionSubmitQueryRequest>({
 const colors = ["orange", "green", "blue", "red"];
 
 const loadData = async () => {
-  const res =
-    await QuestionSubmitControllerService.listQuestionSubmitByPageUsingPost({
+  const res = await QuestionControllerService.listQuestionSubmitByPageUsingPost(
+    {
       ...searchParams.value,
       sortField: "createTime",
       sortOrder: "descend",
-    });
+    }
+  );
   if (res.code === 0) {
     dataList.value = res.data.records;
     total.value = res.data.total;

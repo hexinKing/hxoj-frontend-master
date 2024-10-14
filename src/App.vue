@@ -13,7 +13,7 @@
 #app {
 }
 </style>
-<script setup lang="ts">
+<script lang="ts" setup>
 import BasicLayout from "@/layouts/BasicLayout.vue";
 import { onMounted } from "vue";
 import { useRoute } from "vue-router";
@@ -23,23 +23,7 @@ const route = useRoute();
  * todo 全局初始化函数，有全局单次调用的代码，都可以写到这里
  */
 const doInit = () => {
-  console.log(
-    "       _                        \n" +
-      "       \\`*-.                    \n" +
-      "        )  _`-.                 \n" +
-      "       .  : `. .                \n" +
-      "       : _   '  \\               \n" +
-      "       ; *` _.   `*-._          \n" +
-      "       `-.-'          `-.       \n" +
-      "         ;       `       `.     \n" +
-      "         :.       .        \\    \n" +
-      "         . \\  .   :   .-'   .   \n" +
-      "         '  `+.;  ;  '      :   \n" +
-      "         :  '  |    ;       ;-. \n" +
-      "         ; '   : :`-:     _.`* ;\n" +
-      "[Cat] .*' /  .*' ; .*`- +'  `*' \n" +
-      "      `*-*   `*-*  `*-*'"
-  );
+  console.log("欢迎来到矮蕉大王制作的HX OJ在线判题系统");
 };
 
 onMounted(() => {

@@ -7,21 +7,19 @@
       <a-form-item
         field="tags"
         label="题目标签："
-        tooltip="请输入搜索题目标签"
         style="min-width: 280px"
+        tooltip="请输入搜索题目标签"
       >
         <a-input-tag v-model="searchParams.tags" placeholder="请输入题目标签" />
       </a-form-item>
       <a-form-item>
-        <a-button type="outline" shape="round" status="normal" @click="doSubmit"
+        <a-button shape="round" status="normal" type="outline" @click="doSubmit"
           >搜索
         </a-button>
       </a-form-item>
     </a-form>
     <a-divider size="0" />
     <a-table
-      column-resizable
-      wrapper
       :ref="tableRef"
       :columns="columns"
       :data="dataList"
@@ -33,16 +31,18 @@
         showJumper: true,
         showPageSize: true,
       }"
-      @page-change="onPageChange"
+      column-resizable
+      wrapper
       @pageSizeChange="onPageSizeChange"
+      @page-change="onPageChange"
     >
       <template #tags="{ record }">
         <a-space wrap>
           <a-tag
-            size="medium"
             v-for="(tag, index) of record.tags"
             :key="index"
             color="green"
+            size="medium"
             >{{ tag }}
           </a-tag>
         </a-space>
@@ -77,7 +77,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, ref, watchEffect } from "vue";
 import {
   Question,

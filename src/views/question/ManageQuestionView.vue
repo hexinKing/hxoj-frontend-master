@@ -17,20 +17,20 @@
       <a-form-item
         field="tags"
         label="题目标签："
-        tooltip="请输入搜索题目标签"
         style="min-width: 280px"
+        tooltip="请输入搜索题目标签"
       >
         <a-input-tag v-model="searchParams.tags" placeholder="请输入题目标签" />
       </a-form-item>
       <a-form-item>
-        <a-button type="outline" shape="round" status="normal" @click="doSubmit"
+        <a-button shape="round" status="normal" type="outline" @click="doSubmit"
           >搜索
         </a-button>
       </a-form-item>
     </a-form>
     <a-table
-      :column-resizable="true"
       :ref="tableRef"
+      :column-resizable="true"
       :columns="columns"
       :data="dataList"
       :pagination="{
@@ -41,8 +41,8 @@
         showJumper: true,
         showPageSize: true,
       }"
-      @page-change="onPageChange"
       @pageSizeChange="onPageSizeChange"
+      @page-change="onPageChange"
     >
       <template #id="{ record }">
         <a-link
@@ -99,10 +99,10 @@
             >修改
           </a-button>
           <a-popconfirm
-            content="确定要删除此题目吗?"
-            type="error"
-            okText="是"
             cancelText="否"
+            content="确定要删除此题目吗?"
+            okText="是"
+            type="error"
             @cancel="
               () => {
                 console.log(`已取消`);
@@ -110,7 +110,7 @@
             "
             @ok="doDelete(record)"
           >
-            <a-button shape="round" type="outline" status="danger"
+            <a-button shape="round" status="danger" type="outline"
               >删除
             </a-button>
           </a-popconfirm>
@@ -120,7 +120,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, ref, watchEffect } from "vue";
 import {
   Question,

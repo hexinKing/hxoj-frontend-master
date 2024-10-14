@@ -2,7 +2,7 @@
   <div id="404page">
     <div class="title">401 错误 !</div>
     <div class="images">
-      <img width="500" src="../../assets/401.svg" />
+      <img src="../../assets/401.svg" width="500" />
     </div>
     <a-result
       :status="null"
@@ -10,7 +10,7 @@
     >
       <template #extra>
         <a-space>
-          <a-button class="back-404" type="primary" href="/">首页</a-button>
+          <a-button class="back-404" href="/" type="primary">首页</a-button>
         </a-space>
       </template>
     </a-result>
